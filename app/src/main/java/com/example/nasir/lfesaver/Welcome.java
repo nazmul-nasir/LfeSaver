@@ -72,9 +72,13 @@ public class Welcome extends Activity implements View.OnClickListener, AsyncResp
         Spinner d=(Spinner)findViewById(R.id.blood_group_spn2);
         blood_group=d.getSelectedItem().toString();
 
+        getLocation();
+
         HashMap<String, String> postData = new HashMap<String, String>();
         postData.put("mobile", "android");
         postData.put("blood_group",blood_group);
+        postData.put("longitude",Double.toString(longitude));
+        postData.put("latitude",Double.toString(latitude));
 
         PostResponseAsyncTask loginTask = new PostResponseAsyncTask(this,postData);
         loginTask.execute("http://192.168.0.102:8080/client/search.php");
